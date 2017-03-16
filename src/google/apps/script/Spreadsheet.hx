@@ -2,13 +2,171 @@ package google.apps.script;
 
 import google.apps.script.Charts;
 import google.apps.script.Forms;
+import google.apps.script.Spreadsheet.Range;
+import google.apps.script.SpreadsheetApp.BorderStyle;
+import google.apps.script.SpreadsheetApp.DataValidation;
 
-//TODO
+
 @:require(google_apps_script)
-typedef Range = Dynamic;
+@:native("Range")
+extern class Range {
+	function activate():Range;
+	function breakApart():Range;
+	function canEdit():Bool;
+	@:overload(function(options:Dynamic):Range{})
+	function clear():Range;
+	function clearContent():Range;
+	function clearDataValidations():Range;
+	function clearFormat():Range;
+	function clearNote():Range;
+	@:overload(function(sheet:Int, column:Int, columnEnd:Int, row:Int, rowEnd:Int):Void{})
+	function copyFormatToRange(gridId:Int, column:Int, columnEnd:Int, row:Int, rowEnd:Int):Void;
+	@:overload(function(destination:Range, options:Dynamic):Void{})
+	function copyTo(destination:Range):Void;
+	@:overload(function(sheet:Sheet, column:Int, columnEnd:Int, row:Int, rowEnd:Int):Void{})
+	function copyValuesToRange(gridId:Int, column:Int, columnEnd:Int, row:Int, rowEnd:Int):Void;
+	function getA1Notation():String;
+	function getBackground():String;
+	function getBackgrounds():Array<Array<String>>;
+	function getCell(row:Int, column:Int):Range;
+	function getColumn():Int;
+	function getDataSourceUrl():String;
+	@:overload(function(firstRowIsHeader:Bool):DataTable{})
+	function getDataTable():DataTable;
+	function getDataValidation():DataValidation;
+	function getDataValidations():Array<Array<DataValidation>>;
+	function getDisplayValue():String;
+	function getDisplayValues():Array<Array<String>>;
+	function getFontColor():String;
+	function getFontColors():Array<Array<String>>;
+	function getFontFamilies():Array<Array<String>>;
+	function getFontFamily():String;
+	function getFontLine():String;
+	function getFontLines():Array<Array<String>>;
+	function getFontSize():Int;
+	function getFontSizes():Array<Array<Int>>;
+	function getFontStyle():String;
+	function getFontStyles():Array<Array<String>>;
+	function getFontWeight():String;
+	function getFontWeights():Array<Array<String>>;
+	function getFormula():String;
+	function getFormulaR1C1():String;
+	function getFormulas():Array<Array<String>>;
+	function getFormulasR1C1():Array<Array<String>>;
+	function getGridId():Int;
+	function getHeight():Int;
+	function getHorizontalAlignment():String;
+	function getHorizontalAlignments():Array<Array<String>>;
+	function getLastColumn():Int;
+	function getLastRow():Int;
+	function getMergedRanges():Array<Range>;
+	function getNote():String;
+	function getNotes():Array<Array<String>>;
+	function getNumColumns():Int;
+	function getNumRows():Int;
+	function getNumberFormat():String;
+	function getNumberFormats():Array<Array<String>>;
+	function getRow():Int;
+	function getRowIndex():Int;
+	function getSheet():Sheet;
+	function getValue():Dynamic;
+	function getValues():Array<Array<Dynamic>>;
+	function getVerticalAlignment():String;
+	function getVerticalAlignments():Array<Array<String>>;
+	function getWidth():Int;
+	function getWrap():Bool;
+	function getWraps():Array<Array<Bool>>;
+	function isBlank():Bool;
+	function isEndColumnBounded():Bool;
+	function isEndRowBounded():Bool;
+	function isPartOfMerge():Bool;
+	function isStartColumnBounded():Bool;
+	function isStartRowBounded():Bool;
+	function merge():Range;
+	function mergeAcross():Range;
+	function mergeVertically():Range;
+	function moveTo(target:Range):Void;
+	@:overload(function(rowOffset:Int, columnOffset:Int, numRows:Int):Range { } )
+	@:overload(function(rowOffset:Int, columnOffset:Int, numRows:Int, numColumns:Int):Range{})
+	function offset(rowOffset:Int, columnOffset:Int):Range;
+	function protect():Protection;
+	function setBackground(color:String):Range;
+	function setBackgroundRGB(red:Int, green:Int, blue:Int):Range;
+	function setBackgrounds(color:Array<Array<String>>):Range;
+	@:overload(function(top:Bool, left:Bool, bottom:Bool, right:Bool, vertical:Bool, horizontal:Bool, color:String, style:BorderStyle):Range { } )
+	function setBorder(top:Bool, left:Bool, bottom:Bool, right:Bool, vertical:Bool, horizontal:Bool):Range;
+	function setDataValidation(rule:DataValidation):Range;
+	function setDataValidations(rules:Array<Array<DataValidation>>):Range;
+	function setFontColor(color:String):Range;
+	function setFontColors(colors:Array<Array<String>>):Range;
+	function setFontFamilies(fontFamilies:Array<Array<String>>):Range;
+	function setFontFamily(fontFamily:String):Range;
+	function setFontLine(fontLine:String):Range;
+	function setFontLines(fontLines:Array<Array<String>>):Range;
+	function setFontSize(size:Int):Range;
+	function setFontSizes(sizes:Array<Array<Int>>):Range;
+	function setFontStyle(fontStyle:String):Range;
+	function setFontStyles(fontStyles:Array<Array<String>>):Range;
+	function setFontWeight(fontWeight:String):Range;
+	function setFontWeights(fontWeights:Array<Array<String>>):Range;
+	function setFormula(formula:String):Range;
+	function setFormulaR1C1(formula:String):Range;
+	function setFormulas(formulas:Array<Array<String>>):Range;
+	function setFormulasR1C1(formulas:Array<Array<String>>):Range;
+	function setHorizontalAlignment(alignment:String):Range;
+	function setHorizontalAlignments(alignments:Array<Array<String>>):Range;
+	function setNote(note:String):Range;
+	function setNotes(notes:Array<Array<String>>):Range;
+	function setNumberFormat(numberFormat:String):Range;
+	function setNumberFormats(numberFormats:Array<Array<String>>):Range;
+	function setValue(value:Dynamic):Range;
+	function setValues(values:Array<Array<Dynamic>>):Range;
+	function setVerticalAlignment(alignment:String):Range;
+	function setVerticalAlignments(alignments:Array<Array<String>>):Range;
+	function setWrap(isWrapEnabled:Bool):Range;
+	function setWraps(isWrapEnabled:Array<Array<Bool>>):Range;
+	function sort(sortSpecObj:Dynamic):Range;
+}
 
 @:require(google_apps_script)
 typedef PageProtection = Dynamic;
+
+@:require(google_apps_script)
+typedef DataTable = Dynamic;
+
+
+@:require(google_apps_script)
+typedef NamedRange = Dynamic;
+
+
+@:require(google_apps_script)
+@:native("Protection")
+extern class Protection {
+	@:overload(function(user:User):Protection{})
+	function addEditor(emailAddress:String):Protection;
+	function addEditors(emailAddresses:Array<String>):Protection;
+	function canDomainEdit():Bool;
+	function canEdit():Bool;
+	function getDescription():String;
+	function getEditors():Array<User>;
+	function getProtectionType():SpreadsheetApp.ProtectionType;
+	function getRange():Range;
+	function getRangeName():String;
+	function getUnprotectedRanges():Array<Range>;
+	function isWarningOnly():Bool;
+	function remove():Void;
+	@:overload(function(user:User):Protection{})
+	function removeEditor(emailAddress:String):Protection;
+	function removeEditors(emailAddresses:Array<String>):Protection;
+	function setDescription(description:String):Protection;
+	function setDomainEdit(editable:Bool):Protection;
+	function setNamedRange(namedRange:NamedRange):Protection;
+	function setRange(range:Range):Protection;
+	function setRangeName(rangeName:String):Protection;
+	function setUnprotectedRanges(ranges:Array<Range>):Protection;
+	function setWarningOnly(warningOnly:Bool):Protection;
+}
+
 
 @:require(google_apps_script)
 @:native("Sheet")

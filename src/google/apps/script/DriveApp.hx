@@ -14,27 +14,29 @@ extern class FolderIterator {
     function next() : Folder;
 }
 
-@:native("Access")
-@:enum abstract Access(String) from String to String {
-    var ANYONE = "ANYONE";
-    var ANYONE_WITH_LINK = "ANYONE_WITH_LINK";
-    var DOMAIN = "DOMAIN";
-    var DOMAIN_WITH_LINK = "DOMAIN_WITH_LINK";
-    var PRIVATE = "PRIVATE";
+@:native("DriveApp.Access")
+extern class Access{
+    public var ANYONE:Access;
+    public var ANYONE_WITH_LINK:Access;
+    public var DOMAIN:Access;
+    public var DOMAIN_WITH_LINK:Access;
+    public var PRIVATE:Access;
 }
 
-@:native("Permission")
-@:enum abstract Permission(String) from String to String {
-    var VIEW = "VIEW";
-    var EDIT = "EDIT";
-    var COMMENT = "COMMENT";
-    var OWNER = "OWNER";
-    var NONE = "NONE";
+@:native("DriveApp.Permission")
+extern class Permission{
+    public var VIEW:Permission;
+    public var EDIT:Permission;
+    public var COMMENT:Permission;
+    public var OWNER:Permission;
+    public var NONE:Permission;
 }
 
 @:require(google_apps_script)
 @:native("Folder")
 extern class Folder {
+	function addFile( child : File ) : Folder;
+    function addFolder( child : Folder ) : Folder;
     @:overload(function(user:User):Folder{})
     function addEditor( emailAddress : String ) : Folder;
     function addEditors( emailAddresses: Array<String> ) : Folder;
@@ -68,8 +70,8 @@ extern class Folder {
     function isTrashed() : Bool;
     @:overload(function(user:User):Folder{})
     function removeEditor( emailAddress : String ) : Folder;
-    function removeFile( name : String ) : Folder;
-    function removeFolder( name : String ) : Folder;
+    function removeFile( file : File ) : Folder;
+    function removeFolder( folder : Folder ) : Folder;
     @:overload(function(user:User):Folder{})
     function removeViewer( emailAddress : String ) : Folder;
     @:overload(function(user:User):Folder{})
@@ -149,7 +151,7 @@ extern class DriveApp {
     @:overload(function(name:String,content:Blob,?mimeType:String):File{})
     static function createFile( blob : Blob ) : File;
     static function createFolder( name : String ) : Folder;
-    static function getFileById( id : Int ) : File;
+    static function getFileById(id : String ) : File;
     static function getFiles() : FileIterator;
     static function getFilesByName( name : String ) : FileIterator;
     static function getFilesByType( mimeType : String ) : FileIterator;

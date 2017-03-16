@@ -44,7 +44,7 @@ extern class TriggerBuilder {
     static function forForm( form : Form ) : FormTriggerBuilder;
     @:overload(function(key:String):FormTriggerBuilder{})
     static function forSpreadsheet( sheet : Spreadsheet ) : SpreadsheetTriggerBuilder;
-    static function timeBased() : ClockTriggerBuilder;
+    function timeBased() : ClockTriggerBuilder;
 }
 
 @:require(google_apps_script)
@@ -91,5 +91,5 @@ extern class ScriptApp {
     function getProjectTriggers() : Array<Trigger>;
     function getService() : Service;
     function invalidateAuth() : Void;
-    function newTrigger( functionName : String ) : Void;
+    static function newTrigger(functionName:String):TriggerBuilder;
 }
